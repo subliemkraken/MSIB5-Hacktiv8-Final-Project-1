@@ -1,0 +1,120 @@
+basePath: /
+definitions:
+  controllers.Todo:
+    properties:
+      id:
+        example: "1"
+        type: string
+      task:
+        example: tidur
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: soberkoder@swagger.io
+    name: API Support
+  description: This is a todo application
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSES-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Todo Application
+  version: "1.0"
+paths:
+  /todo:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all todo list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Todo'
+      summary: Get all todos
+      tags:
+      - todo
+    post:
+      consumes:
+      - application/json
+      description: Create a todo
+      parameters:
+      - description: create a todo
+        in: body
+        name: controllers.Todo
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.Todo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Todo'
+      summary: Create a todo
+      tags:
+      - todo
+  /todo/{todoID}:
+    get:
+      consumes:
+      - application/json
+      description: Get details of a todo
+      parameters:
+      - description: ID of todo
+        in: path
+        name: todoID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Todo'
+      summary: Get a todo
+      tags:
+      - todo
+    put:
+      consumes:
+      - application/json
+      description: Update a todo with ID
+      parameters:
+      - description: ID of todo to be updated
+        in: path
+        name: todoID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Todo'
+      summary: Update a todo
+      tags:
+      - todo
+    delete:
+      consumes:
+      - application/json
+      description: Delete a todo with input todo's Id
+      parameters:
+      - description: ID of todo to be deleted
+        in: path
+        name: todoID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Delete a todo
+      tags:
+      - todo
+swagger: "2.0"
